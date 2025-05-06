@@ -1,7 +1,10 @@
 import json
+import os
+
 class bancoDados:
     def __init__(self, filepath):
-        self._path = "Compra_de_tokens_AI/package/controllers/db/" + filepath
+        base_dir = os.path.dirname(os.path.abspath(__file__))
+        self._path = os.path.join(base_dir, 'controllers', 'db', filepath)
         if filepath:
             self._load()
         else:
