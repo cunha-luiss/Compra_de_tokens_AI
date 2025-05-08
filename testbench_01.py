@@ -1,7 +1,7 @@
-from package.aplicação import aplicaçao
+from package.aplicação import aplicacao
 
 def workspace():
-	app = aplicaçao()
+	app = aplicacao()
 	
 if __name__ == "__main__":
 	workspace()

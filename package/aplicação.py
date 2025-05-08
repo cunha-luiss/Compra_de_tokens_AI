@@ -2,7 +2,7 @@ from package.contaUsuario import contaUsuario
 from package.admin import admin
 from package.bancoDados import bancoDados
 
-class aplicaçao():
+class aplicacao():
     def __init__(self):
         self.__dbUsuarios = bancoDados('users.json')
         self._login()

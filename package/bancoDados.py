@@ -12,18 +12,19 @@ class bancoDados:
             self._save()
 
     def _load(self):
-        #botar try/ except
-        with open(self._path, 'r', encoding='utf-8') as f:
-            self.items = json.load(f)
+        try:
+            with open(self._path, 'r', encoding='utf-8') as f:
+                self.items = json.load(f)
+        except FileNotFoundError:
+            print(f'Arquivo {self._path} não encontrado!')
+            self.items = []
 
     def _save(self):
         with open(self._path, 'w', encoding='utf-8') as f:
             json.dump(self.items, f, indent=4)
 
-    def get_user(self, username: str) -> dict:
-        return self.items.get(username)
-
     def addItem(self, item):
+        #função para criação de login
         novoItem = vars(item)
         self.items.append(novoItem)
         self._save()
