@@ -1,7 +1,7 @@
 import json
 import os
 
-class bancoDados:
+class bancoDados():
     def __init__(self, filepath):
         base_dir = os.path.dirname(os.path.abspath(__file__))
         self._path = os.path.join(base_dir, 'controllers', 'db', filepath)
