@@ -34,6 +34,9 @@ class bancoDados():
             if (
                 usuario.get("_contaUsuario__username") == username and
                 usuario.get("_contaUsuario__senha") == senha
+            ) or (
+                usuario.get("_admin__username") == username and
+                usuario.get("_admin__senha") == senha
             ):
                 return usuario  # Usuário encontrado
         return None  # Não encontrado
@@ -45,4 +48,12 @@ class bancoDados():
                 self.items[i]["_contaUsuario__tokens"] = usuario_atualizado.tokens()
                 self._save()
                 return True
+            elif usuario.get("_admin__username") == usuario_atualizado.username():
+                # Atualiza os dados
+                self.items[i]["_admin__tokens"] = usuario_atualizado.tokens()
+                self._save()
+                return True
         return False
+    
+    def get_items(self):
+        return self.items

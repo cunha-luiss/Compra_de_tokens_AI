@@ -5,6 +5,7 @@ from package.bancoDados import bancoDados
 class aplicacao():
     def __init__(self):
         self.__dbUsuarios = bancoDados('users.json')
+        self.__dbAdmin = bancoDados('admin.json')
         self._login()
 
     def _login(self):
@@ -13,6 +14,7 @@ class aplicacao():
             login = input("Digite seu login: ")
             senha = input("Digite sua senha: ")
             usuario_dict = self.__dbUsuarios.verifica_login(login, senha)
+            admin_dict = self.__dbAdmin.verifica_login(login, senha)
             if usuario_dict:
                 print("\nUsuário encontrado!")
                 # Cria o objeto contaUsuario a partir do dicionário, usando os dados do Banco encontrados pelo verifica_login (que retorna o usuário)
@@ -21,6 +23,12 @@ class aplicacao():
                     usuario_dict["_contaUsuario__senha"],
                     usuario_dict["_contaUsuario__tokens"]
                 )
+                break
+            elif admin_dict:
+                print(f"\nAdmin encontrado. Bem vindo {admin_dict['_admin__username']}!")
+                self._current_user = admin(admin_dict["_admin__username"], admin_dict["_admin__senha"], admin_dict["_admin__tokens"])
+                print("\nAqui está a lista de todos os usuários presentes na plataforma:")
+                self.listaAdmin()
                 break
             else:
                 print("\nUsuário não encontrado")
@@ -60,7 +68,10 @@ class aplicacao():
                 
     def saveUser(self):
         # Atualiza o banco de dados
-        self.__dbUsuarios.atualiza_usuario(self._current_user)
+        if self._current_user.permissao:
+            self.__dbAdmin.atualiza_usuario(self._current_user)
+        else:
+            self.__dbUsuarios.atualiza_usuario(self._current_user)
         print("Salvo com sucesso!")
 
     def quantidade_tokens(self):
@@ -91,3 +102,7 @@ class aplicacao():
         else:
             print("\nOpção não encontrada, tente novamente")
             self.compraTokens()
+    
+    def listaAdmin(self):
+        for user in self.__dbUsuarios.get_items():
+            print(f"Usuário: {user.get('_contaUsuario__username', 'N/A')}, Tokens: {user.get('_contaUsuario__tokens', 'N/A')}")
