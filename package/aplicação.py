@@ -27,8 +27,6 @@ class aplicacao():
             elif admin_dict:
                 print(f"\nAdmin encontrado. Bem vindo {admin_dict['_admin__username']}!")
                 self._current_user = admin(admin_dict["_admin__username"], admin_dict["_admin__senha"], admin_dict["_admin__tokens"])
-                print("\nAqui está a lista de todos os usuários presentes na plataforma:")
-                self.listaAdmin()
                 break
             else:
                 print("\nUsuário não encontrado")
@@ -52,7 +50,8 @@ class aplicacao():
             print("\nOpções:")
             print("1. Verificação da quantidade de tokens existentes")
             print("2. Adquirição de mais tokens")
-            print("3. Sair da plataforma")
+            print("3. Lista de usuário")
+            print("4. Sair da plataforma")
 
             choice = input("Escolha sua opção: ")
 
@@ -61,6 +60,11 @@ class aplicacao():
             elif choice == '2':
                 self.compraTokens()
             elif choice == '3':
+                if self._current_user.permissao():
+                    print("\nAqui está a lista de todos os usuários presentes na plataforma:")
+                    self.listaAdmin()
+                else: print("\n Vaza daqui!")
+            elif choice == '4':
                 print("\nSaindo...")
                 voltar = True
             else:
@@ -68,7 +72,7 @@ class aplicacao():
                 
     def saveUser(self):
         # Atualiza o banco de dados
-        if self._current_user.permissao:
+        if self._current_user.permissao():
             self.__dbAdmin.atualiza_usuario(self._current_user)
         else:
             self.__dbUsuarios.atualiza_usuario(self._current_user)
