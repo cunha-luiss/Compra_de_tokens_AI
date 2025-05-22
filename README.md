@@ -108,9 +108,3 @@ Opções:
 ## Contribuição
 
 Sinta-se livre para abrir issues ou pull requests para sugerir melhorias, relatar bugs ou contribuir para o crescimento do projeto.
-
----
-
-## Licença
-
-Este projeto é distribuído sob a licença MIT.
