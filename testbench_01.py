@@ -1,4 +1,4 @@
-from package.aplicação import aplicacao
+from package.aplicacao import aplicacao
 
 def workspace():
 	app = aplicacao()
