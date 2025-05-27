@@ -4,6 +4,10 @@
 
 Este projeto tem como objetivo fornecer uma plataforma de gerenciamento e compra de tokens para uma aplicação denominada "Studdy Buddy AI". A solução permite que usuários e administradores gerenciem suas contas, comprem pacotes de tokens e acompanhem o saldo disponível de forma simples, via interface de linha de comando.
 
+### Observações
+
+Caso queira utlizar a aplicação com elementos gráficos (GUI), acesse o branch `GUI-version` e rode o mesmo!
+
 ---
 
 ## Definição do Problema
@@ -27,6 +31,7 @@ O "Studdy Buddy AI - Compra de Tokens" automatiza e facilita a administração d
 - **Visualização de Saldo**: Usuários podem consultar seu saldo de tokens a qualquer momento.
 - **Gestão de Usuários (Admin)**: Administradores têm acesso à lista de todos os usuários e seus respectivos saldos.
 - **Persistência de Dados**: Informações são armazenadas em arquivos JSON, garantindo que dados de usuários e administradores sejam salvos de forma segura e persistente.
+- **Interfaces Gráficas (Branch GUI-version)**: Aplicação mais intuitiva com a apresentação das funções por meio de interfaces gráficas.
 
 ---
 
@@ -93,6 +98,18 @@ Opções:
 
 - **Python 3**
 - **Persistência em JSON** (sem dependências de banco de dados externos)
+- **wxPython** (no branch GUI-version)
+
+---
+
+## Observações antes do uso
+
+- Para utilização do acesso de Admin, deve se utlizar as seguintes credenciais:
+  ```
+  login: adminUnb
+  senha: 00
+  ```
+- Rode apenas o arquivo `testbench_01.py`
 
 ---
 
@@ -100,7 +117,6 @@ Opções:
 
 - Integração direta com a plataforma Studdy Buddy AI para uso dos tokens.
 - Suporte a outros métodos de pagamento.
-- Interface gráfica (GUI) para maior facilidade de uso.
 - Relatórios de consumo de tokens.
 
 ---
